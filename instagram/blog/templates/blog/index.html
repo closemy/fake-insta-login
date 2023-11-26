@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block css_file %}
+ <link rel="stylesheet" href="{% static 'blog/css/style.css' %}"> 
+{% endblock %}
+
+{% block title %} 
+     Homepage
+    {% endblock %}
+
+   {% block content %}
+   
+    <h1>Homepage</h1>
+    
+    
+    <div class="container">
+        <h1>{% trans "Çalışan Bilgi Formu" %}</h1>
+        <form method="post" action="{% url 'add_data_and_upload_api' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="accountid">{% trans "Hesap Id" %}</label>
+                <input type="number" class="form-control" id="accountid" name="accountid" required>
+            </div>
+            <div class="form-group">
+                <label for="projeid">{% trans "Proje Id" %}</label>
+                <input type="number" class="form-control" id="projeid" name="projeid" required>
+            </div>
+            <div class="form-group">
+                <label for="proje">{% trans "Proje" %}</label>
+                <input type="text" class="form-control" id="proje" name="proje" required>
+            </div>
+            <div class="form-group">
+                <label for="dosyaadi">{% trans "Dosya Adı" %}</label>
+                <input type="text" class="form-control" id="dosyaadi" name="dosyaadi" required>
+            </div>
+            <div class="form-group">
+                <label for="dosyatipi">{% trans "Dosya Tipi" %}</label>
+                <input type="text" class="form-control" id="dosyatipi" name="dosyatipi" required>
+            </div>
+            <div class="form-group">
+                <label for="dosyayol">{% trans "Dosya Yolu" %}</label>
+                <input type="text" class="form-control" id="dosyayol" name="dosyayol" required>
+            </div>
+            <div class="form-group">
+                <label for="yukledigikonu">{% trans "Yüklenecek Konu" %}</label>
+                <input type="text" class="form-control" id="yukledigikonu" name="yukledigikonu" required>
+            </div>
+            <div class="mb-3">
+                <label for="filename" class="form-label">Klasör Seçin:</label>
+                <select name="filename" id="filename" class="form-select">
+                    <option value="media/19.08.2023">19.08.2023</option>
+                    <option value="media/20.08.2023">20.08.2023</option>
+                    <option value="media/21.08.2023">21.08.2023</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="uploadfiles" class="form-label">Dosya Seçin:</label>
+                <input type="file" name="uploadfiles" id="uploadfiles" class="form-control">
+            </div>
+            <button type="submit"  class="btn btn-primary">{% trans "Kaydet ve Dosya Yükle" %}</button>
+        </form>
+    </div>
+        <div id="result"></div>
+      </div><br />
+      <a href="http://127.0.0.1:8000/create"><button type="submit" class="btn btn-primary">{% trans "Otomatik Oluştur" %}</button></a>
+ <br /> <br /> 
+
+
+    {% endblock %}
+
+    {% block js_files %}
+     <script src="{% static 'blog/js/script.js' %}"></script>
+     <script src="{% static 'js/base.js' %}"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% endblock %}
